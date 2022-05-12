@@ -77,36 +77,36 @@ def generate(client, parameters, progress_callback):
             progress_callback(progress, total)
 
         yield (
-                get_basic_value(subscription, 'id'),  # Subscription ID
-                get_basic_value(subscription, 'external_id'),  # Subscription External ID
-                get_value(subscription['tiers'], 'customer', 'id'),  # Customer ID
-                get_value(subscription['tiers'], 'customer', 'name'),  # Customer Name
-                get_value(subscription['tiers'], 'customer', 'external_id'),  # Customer External ID
-                get_country(get_value(subscription['tiers']['customer'], 'contact_info', 'country')),  # Customer country
-                param1,  # Subscription param 1 value
-                param2,  # Subscription param 2 value
-                item_name,
-                item_period,
-                item_mpn,
-                item_quantity,
-                get_value(subscription['tiers'], 'tier1', 'id'),  # Tier 1 ID
-                get_value(subscription['tiers'], 'tier1', 'name'),  # Tier 1 Name
-                get_value(subscription['tiers'], 'tier1', 'external_id'),  # Tier 1 External ID
-                get_value(subscription['tiers'], 'tier2', 'id'),  # Tier 2 ID
-                get_value(subscription['tiers'], 'tier2', 'name'),  # Tier 2 Name
-                get_value(subscription['tiers'], 'tier2', 'external_id'),  # Tier 2 External ID
-                get_value(subscription['connection'], 'provider', 'id'),  # Provider ID
-                get_value(subscription['connection'], 'provider', 'name'),  # Provider Name
-                get_value(subscription, 'marketplace', 'name'),  # Marketplace
-                get_value(subscription, 'product', 'id'),  # Product ID
-                get_value(subscription, 'product', 'name'),  # Product Name
-                get_basic_value(subscription, 'status'),  # Subscription Status
-                convert_to_datetime(
-                    get_value(subscription['events'], 'created', 'at'),  # Transaction  Date
-                ),
-                get_basic_value(subscription['connection'], 'type'),  # Connection Type,
-                today_str(),  # Exported At
-            )
+            get_basic_value(subscription, 'id'),  # Subscription ID
+            get_basic_value(subscription, 'external_id'),  # Subscription External ID
+            get_value(subscription['tiers'], 'customer', 'id'),  # Customer ID
+            get_value(subscription['tiers'], 'customer', 'name'),  # Customer Name
+            get_value(subscription['tiers'], 'customer', 'external_id'),  # Customer External ID
+            get_country(get_value(subscription['tiers']['customer'], 'contact_info', 'country')),  # Customer country
+            param1,  # Subscription param 1 value
+            param2,  # Subscription param 2 value
+            item_name,
+            item_period,
+            item_mpn,
+            item_quantity,
+            get_value(subscription['tiers'], 'tier1', 'id'),  # Tier 1 ID
+            get_value(subscription['tiers'], 'tier1', 'name'),  # Tier 1 Name
+            get_value(subscription['tiers'], 'tier1', 'external_id'),  # Tier 1 External ID
+            get_value(subscription['tiers'], 'tier2', 'id'),  # Tier 2 ID
+            get_value(subscription['tiers'], 'tier2', 'name'),  # Tier 2 Name
+            get_value(subscription['tiers'], 'tier2', 'external_id'),  # Tier 2 External ID
+            get_value(subscription['connection'], 'provider', 'id'),  # Provider ID
+            get_value(subscription['connection'], 'provider', 'name'),  # Provider Name
+            get_value(subscription, 'marketplace', 'name'),  # Marketplace
+            get_value(subscription, 'product', 'id'),  # Product ID
+            get_value(subscription, 'product', 'name'),  # Product Name
+            get_basic_value(subscription, 'status'),  # Subscription Status
+            convert_to_datetime(
+                get_value(subscription['events'], 'created', 'at'),  # Transaction  Date
+            ),
+            get_basic_value(subscription['connection'], 'type'),  # Connection Type,
+            today_str(),  # Exported At
+        )
         progress += 1
         progress_callback(progress, total)
 

@@ -41,7 +41,7 @@ def generate(client, parameters, progress_callback):
             "description": get_basic_value(product, 'short_description'),
             "suspend_resume": get_value(product, 'configurations', 'suspend_resume_supported'),
             "requires_reseller": get_value(product, 'configurations', 'requires_reseller_information'),
-            "ppu": ppu
+            "ppu": ppu,
         }
         if vendor_id not in PRODUCTS.keys():
             PRODUCTS[vendor_id] = {'products': []}
