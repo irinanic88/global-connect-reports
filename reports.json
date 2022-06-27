@@ -1,224 +1,330 @@
 {
-    "name": "Vendor Subscriptions Report",
-    "readme_file": "README.md",
-    "version": "0.1.0",
-    "language": "python",
-    "reports": [
+  "name": "Vendor Subscriptions Report",
+  "readme_file": "README.md",
+  "version": "0.1.0",
+  "language": "python",
+  "reports": [
+    {
+      "name": "Subscriptions Report per Creation Date, Product, Marketplace and Environment",
+      "readme_file": "reports/subscriptions_report/README.md",
+      "template": "reports/subscriptions_report/templates/xlsx/template.xlsx",
+      "start_row": 1,
+      "start_col": 1,
+      "entrypoint": "reports.subscriptions_report.entrypoint.generate",
+      "audience": [
+        "provider",
+        "vendor"
+      ],
+      "report_spec": "1",
+      "parameters": [
         {
-         "name": "Subscriptions Report per Creation Date, Product, Marketplace and Environment",
-         "readme_file": "reports/subscriptions_report/README.md",
-         "template": "reports/subscriptions_report/templates/xlsx/template.xlsx",
-         "start_row": 1,
-         "start_col": 1,
-         "entrypoint": "reports.subscriptions_report.entrypoint.generate",
-         "audience": [
-            "provider",
-            "vendor"
-         ],
-         "report_spec": "1",
-         "parameters": [
+          "id": "date",
+          "type": "date_range",
+          "name": "Report period",
+          "description": "Provide the subscriptions creation date period for the report",
+          "required": true
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "name": "Product list",
+          "description": "Select the products you want to include in the report",
+          "required": true
+        },
+        {
+          "id": "parameter_id",
+          "type": "single_line",
+          "name": "Parameter Id",
+          "description": "Optionally add up to 2 subscription parameters id separated by | to be included in the report",
+          "required": false
+        },
+        {
+          "id": "mkp",
+          "type": "marketplace",
+          "name": "Marketplaces",
+          "required": true,
+          "description": "Select the marketplaces you want to include in the report"
+        },
+        {
+          "id": "connexion_type",
+          "type": "checkbox",
+          "name": "Type of Environment",
+          "required": true,
+          "description": "Select the type of environment you want to include in report",
+          "choices": [
             {
-               "id":"date",
-               "type":"date_range",
-               "name":"Report period",
-               "description":"Provide the subscriptions creation date period for the report",
-               "required":true
+              "value": "production",
+              "label": "Production"
             },
             {
-               "id": "product",
-               "type": "product",
-               "name": "Product list",
-               "description": "Select the products you want to include in the report",
-               "required": true
+              "value": "test",
+              "label": "Test"
             },
             {
-               "id": "parameter_id",
-               "type": "single_line",
-               "name": "Parameter Id",
-               "description": "Optionally add up to 2 subscription parameters id separated by | to be included in the report",
-               "required": false
-            },
-            {
-               "id": "mkp",
-               "type": "marketplace",
-               "name": "Marketplaces",
-               "required": true,
-               "description": "Select the marketplaces you want to include in the report"
-            },
-            {
-               "id": "connexion_type",
-               "type": "checkbox",
-               "name": "Type of Environment",
-               "required": true,
-               "description": "Select the type of environment you want to include in report",
-               "choices": [
-                  {
-                     "value": "production",
-                     "label": "Production"
-                  },
-                  {
-                     "value": "test",
-                     "label": "Test"
-                  },
-                 {
-                     "value": "preview",
-                     "label": "Preview"
-                  }
-               ]
+              "value": "preview",
+              "label": "Preview"
             }
-         ]
-      },
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fulfillment Requests Report per Creation Date, Product, Marketplace and Environment",
+      "readme_file": "reports/requests_report/README.md",
+      "template": "reports/requests_report/templates/xlsx/template.xlsx",
+      "start_row": 1,
+      "start_col": 1,
+      "entrypoint": "reports.requests_report.entrypoint.generate",
+      "audience": [
+        "provider",
+        "vendor"
+      ],
+      "report_spec": "1",
+      "parameters": [
         {
-        "name": "Fulfillment Requests Report per Creation Date, Product, Marketplace and Environment",
-        "readme_file": "reports/requests_report/README.md",
-        "template": "reports/requests_report/templates/xlsx/template.xlsx",
-        "start_row": 1,
-        "start_col": 1,
-        "entrypoint": "reports.requests_report.entrypoint.generate",
-        "audience": [
-          "provider",
-          "vendor"
-        ],
-        "report_spec": "1",
-        "parameters": [
-          {
-            "id": "date",
-            "type": "date_range",
-            "name": "Report period",
-            "description": "Provide the requests creation date period for the report",
-            "required": true
-          },
-          {
-               "id":"rr_status",
-               "type":"checkbox",
-               "name":"Request status",
-               "description":"Select the status of the Requests you want to include in the report",
-               "required":true,
-               "choices":[
-                  {
-                     "value":"tiers_setup",
-                     "label":"Tier Setup"
-                  },
-                  {
-                     "value":"inquiring",
-                     "label":"Inquiring"
-                  },
-                  {
-                     "value":"pending",
-                     "label":"Pending"
-                  },
-                  {
-                     "value":"approved",
-                     "label":"Approved"
-                  },
-                  {
-                     "value":"failed",
-                     "label":"Failed"
-                  },
-                  {
-                     "value":"draft",
-                     "label":"Draft"
-                  }
-               ]
+          "id": "date",
+          "type": "date_range",
+          "name": "Report period",
+          "description": "Provide the requests creation date period for the report",
+          "required": true
+        },
+        {
+          "id": "rr_status",
+          "type": "checkbox",
+          "name": "Request status",
+          "description": "Select the status of the Requests you want to include in the report",
+          "required": true,
+          "choices": [
+            {
+              "value": "tiers_setup",
+              "label": "Tier Setup"
             },
-          {
-            "id": "product",
-            "type": "product",
-            "name": "Product list",
-            "description": "Select the products you want to include in the report",
-            "required": true
+            {
+              "value": "inquiring",
+              "label": "Inquiring"
+            },
+            {
+              "value": "pending",
+              "label": "Pending"
+            },
+            {
+              "value": "approved",
+              "label": "Approved"
+            },
+            {
+              "value": "failed",
+              "label": "Failed"
+            },
+            {
+              "value": "draft",
+              "label": "Draft"
+            }
+          ]
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "name": "Product list",
+          "description": "Select the products you want to include in the report",
+          "required": true
+        },
+        {
+          "id": "parameter_id",
+          "type": "single_line",
+          "name": "Parameter Id",
+          "description": "Optionally add up to 2 subscription parameters id separated by | to be included in the report",
+          "required": false
+        },
+        {
+          "id": "mkp",
+          "type": "marketplace",
+          "name": "Marketplaces",
+          "required": true,
+          "description": "Select the marketplaces you want to include in the report"
+        },
+        {
+          "id": "connexion_type",
+          "type": "checkbox",
+          "name": "Type of Environment",
+          "required": true,
+          "description": "Select the type of environment you want to include in report",
+          "choices": [
+            {
+              "value": "production",
+              "label": "Production"
+            },
+            {
+              "value": "test",
+              "label": "Test"
+            },
+            {
+              "value": "preview",
+              "label": "Preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Products and Contracts per Creation Date",
+      "readme_file": "reports/product_report/README.md",
+      "template": "reports/product_report/templates/xlsx/template.xlsx",
+      "start_row": 1,
+      "start_col": 1,
+      "entrypoint": "reports.product_report.entrypoint.generate",
+      "audience": [
+        "provider"
+      ],
+      "report_spec": "1",
+      "parameters": [
+        {
+          "id": "date",
+          "type": "date_range",
+          "name": "Report period",
+          "description": "Provide the Contract Creation Date period for the report",
+          "required": true
+        },
+        {
+          "id": "status",
+          "type": "checkbox",
+          "name": "Contract Status",
+          "required": true,
+          "description": "Select Contract Status you want to include in report",
+          "choices": [
+            {
+              "value": "active",
+              "label": "Active"
+            },
+            {
+              "value": "terminated",
+              "label": "Terminated"
+            }
+          ]
+        },
+        {
+          "id": "product_status",
+          "type": "checkbox",
+          "name": "Product Status",
+          "required": true,
+          "description": "Select Product Status you want to include in report",
+          "choices": [
+            {
+              "value": "published",
+              "label": "Active"
+            },
+            {
+              "value": "endofsale",
+              "label": "End of Sale"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Failure Rate Report per Creation Date, Product, Marketplace and Environment",
+      "readme_file": "reports/failure_rate_report/README.md",
+      "entrypoint": "reports.failure_rate_report.entrypoint.generate",
+      "audience": [
+        "provider",
+        "vendor"
+      ],
+      "report_spec": "2",
+      "parameters": [
+        {
+          "id": "date",
+          "type": "date_range",
+          "name": "Report period",
+          "description": "Provide the requests creation date period for the report",
+          "required": true
+        },
+        {
+          "id": "rr_status",
+          "type": "checkbox",
+          "name": "Request status",
+          "description": "Select the status of the Requests you want to include in the report",
+          "required": true,
+          "choices": [
+            {
+              "value": "tiers_setup",
+              "label": "Tier Setup"
+            },
+            {
+              "value": "inquiring",
+              "label": "Inquiring"
+            },
+            {
+              "value": "pending",
+              "label": "Pending"
+            },
+            {
+              "value": "approved",
+              "label": "Approved"
+            },
+            {
+              "value": "failed",
+              "label": "Failed"
+            },
+            {
+              "value": "draft",
+              "label": "Draft"
+            }
+          ]
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "name": "Product list",
+          "description": "Select the products you want to include in the report",
+          "required": true
+        },
+        {
+          "id": "mkp",
+          "type": "marketplace",
+          "name": "Marketplaces",
+          "required": true,
+          "description": "Select the marketplaces you want to include in the report"
+        },
+        {
+          "id": "connexion_type",
+          "type": "checkbox",
+          "name": "Type of Environment",
+          "required": true,
+          "description": "Select the type of environment you want to include in report",
+          "choices": [
+            {
+              "value": "production",
+              "label": "Production"
+            },
+            {
+              "value": "test",
+              "label": "Test"
+            },
+            {
+              "value": "preview",
+              "label": "Preview"
+            }
+          ]
+        }
+      ],
+      "renderers": [
+        {
+          "id": "csv",
+          "type": "csv",
+          "default": false,
+          "description": "Export data as CSV"
+        },
+        {
+          "id": "xlsx",
+          "type": "xlsx",
+          "template": "reports/failure_rate_report/templates/xlsx/template.xlsx",
+          "default": true,
+          "args": {
+            "start_row": 1,
+            "start_col": 1
           },
-          {
-            "id": "parameter_id",
-            "type": "single_line",
-            "name": "Parameter Id",
-            "description": "Optionally add up to 2 subscription parameters id separated by | to be included in the report",
-            "required": false
-          },
-          {
-            "id": "mkp",
-            "type": "marketplace",
-            "name": "Marketplaces",
-            "required": true,
-            "description": "Select the marketplaces you want to include in the report"
-          },
-          {
-            "id": "connexion_type",
-            "type": "checkbox",
-            "name": "Type of Environment",
-            "required": true,
-            "description": "Select the type of environment you want to include in report",
-            "choices": [
-              {
-                "value": "production",
-                "label": "Production"
-              },
-              {
-                "value": "test",
-                "label": "Test"
-              },
-              {
-                "value": "preview",
-                "label": "Preview"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Products and Contracts per Creation Date",
-        "readme_file": "reports/product_report/README.md",
-        "template": "reports/product_report/templates/xlsx/template.xlsx",
-        "start_row": 1,
-        "start_col": 1,
-        "entrypoint": "reports.product_report.entrypoint.generate",
-        "audience": [
-          "provider"
-        ],
-        "report_spec": "1",
-        "parameters": [
-          {
-            "id": "date",
-            "type": "date_range",
-            "name": "Report period",
-            "description": "Provide the Contract Creation Date period for the report",
-            "required": true
-          },
-          {
-            "id": "status",
-            "type": "checkbox",
-            "name": "Contract Status",
-            "required": true,
-            "description": "Select Contract Status you want to include in report",
-            "choices": [
-              {
-                "value": "active",
-                "label": "Active"
-              },
-              {
-                "value": "terminated",
-                "label": "Terminated"
-              }
-            ]
-          },
-          {
-            "id": "product_status",
-            "type": "checkbox",
-            "name": "Product Status",
-            "required": true,
-            "description": "Select Product Status you want to include in report",
-            "choices": [
-              {
-                "value": "published",
-                "label": "Active"
-              },
-              {
-                "value": "endofsale",
-                "label": "End of Sale"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+          "description": "Export data as Excel"
+        }
+      ]
+    }
+  ]
 }
