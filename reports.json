@@ -316,7 +316,7 @@
         {
           "id": "xlsx",
           "type": "xlsx",
-          "template": "reports/failure_rate_report/templates/xlsx/template.xlsx",
+          "template": "reports/failure_rate_report/xlsx/template.xlsx",
           "default": true,
           "args": {
             "start_row": 1,
