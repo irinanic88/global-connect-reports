@@ -9,8 +9,9 @@ from reports.subscriptions_report.utils import (get_value, get_basic_value, conv
 
 HEADERS = ['Request ID', 'Subscription ID', 'Subscription External ID',
            'Param 1', 'Param 2', 'Item ID', 'Item Name', 'Item Period', 'Item MPN', 'Item Quantity',
-           'Provider  ID', 'Provider Name',
-           'Marketplace', 'Product ID', 'Product Name', 'Subscription Status', 'Request Status',
+           'Provider  ID', 'Provider Name', 'HUB ID', 'HUB Name',
+           'Marketplace', 'Product ID', 'Product Name', 'Vendor ID', 'Vendor Name',
+           'Subscription Status', 'Request Status',
            'Effective Date', 'Creation Date', 'Transaction Type', 'Connection Type', 'Exported At']
 
 
@@ -81,9 +82,13 @@ def generate(client, parameters, progress_callback):
                     item_quantity,
                     get_value(request['asset']['connection'], 'provider', 'id'),  # Provider ID
                     get_value(request['asset']['connection'], 'provider', 'name'),  # Provider Name
+                    get_value(request['asset']['connection'], 'hub', 'id'),  # HUB Id
+                    get_value(request['asset']['connection'], 'hub', 'name'),  # HUB Name
                     get_value(request, 'marketplace', 'name'),  # Marketplace
                     get_value(request['asset'], 'product', 'id'),  # Product ID
                     get_value(request['asset'], 'product', 'name'),  # Product Name
+                    get_value(request['asset']['connection'], 'vendor', 'id'),  # Vendor Id
+                    get_value(request['asset']['connection'], 'vendor', 'name'),  # Vendor Name
                     get_value(request, 'asset', 'status'),  # Subscription Status
                     get_basic_value(request, 'status'),  # Request Status
                     convert_to_datetime(
