@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 def convert_to_datetime(param_value):
-    if param_value == "" or param_value == "-":
+    if param_value == "" or param_value == "-" or param_value is None:
         return "-"
 
     return datetime.strptime(
@@ -12,7 +12,7 @@ def convert_to_datetime(param_value):
 
 
 def convert_to_date(param_value):
-    if param_value == "" or param_value == "-":
+    if param_value == "" or param_value == "-" or param_value is None:
         return "-"
 
     return datetime.strptime(
