@@ -6,10 +6,9 @@
 
 from connect.client.rql import R
 from .utils import (get_value, get_basic_value, convert_to_datetime, today_str)
-from .utils import get_country
 
 HEADERS = ['Subscription ID', 'Subscription External ID',
-           'Customer ID', 'Customer Name', 'Customer External ID', 'Customer Country',
+           'Customer ID', 'Customer Name', 'Customer External ID',
            'Param 1', 'Param 2', 'Item Name', 'Item Period', 'Item MPN', 'Item Quantity',
            'Tier 1 ID', 'Tier 1 Name', 'Tier 1 External ID', 'Tier 2 ID',
            'Tier 2 Name', 'Tier 2 External ID', 'Provider  ID', 'Provider Name',
@@ -82,7 +81,6 @@ def generate(client, parameters, progress_callback):
             get_value(subscription['tiers'], 'customer', 'id'),  # Customer ID
             get_value(subscription['tiers'], 'customer', 'name'),  # Customer Name
             get_value(subscription['tiers'], 'customer', 'external_id'),  # Customer External ID
-            get_country(get_value(subscription['tiers']['customer'], 'contact_info', 'country')),  # Customer country
             param1,  # Subscription param 1 value
             param2,  # Subscription param 2 value
             item_name,
