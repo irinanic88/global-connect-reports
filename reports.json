@@ -93,7 +93,7 @@
           "type": "checkbox",
           "name": "Request status",
           "description": "Select the status of the Requests you want to include in the report",
-          "required": true,
+          "required": false,
           "choices": [
             {
               "value": "tiers_setup",
